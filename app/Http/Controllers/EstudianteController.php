@@ -36,8 +36,8 @@ class EstudianteController extends Controller
      */
     public function store(Request $request)
     {
-      dd($request);
-        /*$this->validate($request, [
+
+        $this->validate($request, [
           'nombre' => 'required',
           'apellido' => 'required',
           'documento' => 'required',
@@ -47,7 +47,23 @@ class EstudianteController extends Controller
           'eps' => 'required',
           'grado' => 'required',
           'grado_colegio_anterior' => 'required'
-        ]);*/
+        ]);
+
+        $estudiante = new Estudiante();
+        $estudiante->nombre = $request->nombre;
+        $estudiante->apellido = $request->apellido;
+        $estudiante->documento = $request->documento;
+        $estudiante->f_nacimiento = $request->f_nacimiento;
+        $estudiante->telefono = $request->telefono;
+        $estudiante->direccion = $request->direccion;
+        $estudiante->eps = $request->eps;
+        $estudiante->grado = $request->grado;
+        $estudiante->grado_colegio_anterior = $request->grado_colegio_anterior;
+
+        $estudiante->save();
+        return back();
+        dd("datos guardados");
+
     }
 
     /**
