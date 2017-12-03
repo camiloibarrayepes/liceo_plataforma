@@ -15,7 +15,13 @@ class EstudianteController extends Controller
      */
     public function index()
     {
-        //
+        $estudiantes = Estudiante::all();
+        return view('estudiantes')->with(['estudiantes' => $estudiantes]);
+    }
+
+    public function mostrar()
+    {
+      return view('welcome');
     }
 
     /**
@@ -40,7 +46,7 @@ class EstudianteController extends Controller
         $this->validate($request, [
           'nombre' => 'required',
           'apellido' => 'required',
-          'documento' => 'required',
+          'documento' => 'required|unique:estudiantes',
           'f_nacimiento' => 'required',
           'telefono' => 'required',
           'direccion' => 'required',
@@ -60,9 +66,13 @@ class EstudianteController extends Controller
         $estudiante->grado = $request->grado;
         $estudiante->grado_colegio_anterior = $request->grado_colegio_anterior;
 
-        $estudiante->save();
-        return back();
-        dd("datos guardados");
+        if($estudiante->save()){
+            return back()->with('msj', 'Datos guardados');
+        }else{
+          return back()->with('errormsj', 'Error al guardar los datos');
+        }
+
+
 
     }
 
@@ -74,8 +84,9 @@ class EstudianteController extends Controller
      */
     public function show($id)
     {
-        //
+      $estudiante = Estudiante::find($id);
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -85,7 +96,8 @@ class EstudianteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $estudiante = Estudiante::find($id);
+        return view('estudiantes')->with(['edit' => true, 'estudiante' => $estudiante]);
     }
 
     /**
@@ -97,7 +109,34 @@ class EstudianteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+          'nombre' => 'required',
+          'apellido' => 'required',
+          'documento' => 'required|unique:estudiantes',
+          'f_nacimiento' => 'required',
+          'telefono' => 'required',
+          'direccion' => 'required',
+          'eps' => 'required',
+          'grado' => 'required',
+          'grado_colegio_anterior' => 'required'
+        ]);
+
+        $estudiante = Estudiante::find($id);
+        $estudiante->nombre = $request->nombre;
+        $estudiante->apellido = $request->apellido;
+        $estudiante->documento = $request->documento;
+        $estudiante->f_nacimiento = $request->f_nacimiento;
+        $estudiante->telefono = $request->telefono;
+        $estudiante->direccion = $request->direccion;
+        $estudiante->eps = $request->eps;
+        $estudiante->grado = $request->grado;
+        $estudiante->grado_colegio_anterior = $request->grado_colegio_anterior;
+
+        if($estudiante->save()){
+            return redirect('estudiante');
+        }else{
+          return back()->with('errormsj', 'Error al guardar los datos');
+        }
     }
 
     /**
@@ -108,6 +147,7 @@ class EstudianteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Estudiante::destroy($id);
+        return back();
     }
 }
