@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', 'EstudianteController@mostrar');
 
-
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Auth::routes();
 
