@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Estudiante;
+
 
 class EstudianteController extends Controller
 {
@@ -13,16 +13,19 @@ class EstudianteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function __construct()
+     {
+
+     }
+
+
     public function index()
     {
         $estudiantes = Estudiante::all();
         return view('estudiantes')->with(['estudiantes' => $estudiantes]);
     }
 
-    public function mostrar()
-    {
-      return view('welcome');
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -84,7 +87,8 @@ class EstudianteController extends Controller
      */
     public function show($id)
     {
-      $estudiante = Estudiante::find($id);
+      $estudiantes = Estudiante::find($id);
+      return view('ver')->with(['estudiantes' => $estudiantes]);
     }
 
 

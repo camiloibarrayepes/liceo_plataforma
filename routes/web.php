@@ -20,3 +20,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 Route::resource('/estudiante','EstudianteController');
 Route::resource('/acudiente','AcudienteController');
+Route::resource('/matricula','MatriculaController');

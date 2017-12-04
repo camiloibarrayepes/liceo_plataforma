@@ -22,8 +22,7 @@
           <input type="submit" class="btn btn-danger" value="Eliminar"></input>
         </form>
       </td>
-
-      <td><a href="estudiante/{{ $es->id }}/show" class="btn btn-success">Ver</td>
+      <td><a href="estudiante/{{ $es->id }}" class="btn btn-success">Ver</td>
     </tr>
     @endforeach
   </tbody>

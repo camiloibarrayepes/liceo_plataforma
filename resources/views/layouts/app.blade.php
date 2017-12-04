@@ -72,7 +72,13 @@
                                         </form>
                                     </li>
                                     <li>
-                                      <a href="{{ url('/home') }}">Registrar estudiante</a>
+                                      <a href="{{ url('/estudiante') }}">Ver estudiantes</a>
+                                    </li>
+                                    <li>
+                                      <a href="{{ url('/matricula') }}">Matriculas</a>
+                                    </li>
+                                    <li>
+                                      <a href="{{ url('/home') }}">Registra Estudiante</a>
                                     </li>
                                 </ul>
                             </li>

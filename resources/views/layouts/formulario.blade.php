@@ -74,6 +74,6 @@
     <label for="exampleInputPassword1">Observaciones</label>
     <textarea class="form-control" name="observaciones" placeholder="Escribir Observaciones si son necesarias"></textarea>
   </div>
-  <a href="{{ url('/acudientes') }}">Registrar acudiente</a><br><br>
+  <a href="{{ url('/acudiente') }}">Registrar acudiente</a><br><br>
   <button type="submit" class="btn btn-default">Registrar</button>
 </form>
